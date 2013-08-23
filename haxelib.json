@@ -1,0 +1,10 @@
+{
+    "name": "should-openfl",
+    "url": "",
+    "license": "MIT",
+    "tags": ["testing", "should", "openfl"],
+    "description": "haxe-should assertions extended for openfl",
+    "version": "0.0.1",
+    "releasenote": "",
+    "contributors": [""]
+}
