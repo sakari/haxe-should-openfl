@@ -7,6 +7,14 @@ import openfl.Assets;
 
 class ShouldTest {
     @Test
+    public function test_comparing_empty_image_to_another_image_fails() {
+        var s = new Sprite();
+        (function() {
+            s.should().matchBitmap(Assets.getBitmapData('assets/images/test.png'));
+        }).should().throwException();
+    }
+
+    @Test
     public function test_sprite_image_comparison() {
         return;
         var s = new Sprite();

@@ -55,6 +55,10 @@ class Should {
 
     private static function writeOut(tag:String, img: BitmapData): String {
         var fileName = '${imageCounter}_$tag.png';
+        if(img.height == 0) {
+            trace('image ${fileName} is empty');
+            return fileName;
+        }
         trace('writing $fileName');
         var b = img.encode('png');
         var f = File.write(fileName, true);
