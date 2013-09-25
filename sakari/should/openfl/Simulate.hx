@@ -1,6 +1,7 @@
 package sakari.should.openfl;
 
 import flash.events.MouseEvent;
+import flash.events.KeyboardEvent;
 import flash.display.DisplayObjectContainer;
 
 class Drag {
@@ -16,7 +17,41 @@ class Drag {
     }
 }
 
+class Key {
+    var _cmd: Bool;
+    var _on: DisplayObjectContainer;
+    public function new(on) {
+        _on = on;
+        _cmd = false;
+    }
+
+    public function withCmd() {
+        _cmd = true;
+        return this;
+    }
+
+    public function down(c: String) {
+        if(_cmd) {
+            var c = new KeyboardEvent(KeyboardEvent.KEY_DOWN);
+            c.keyCode = 15;
+            _on.dispatchEvent(c);
+        }
+        var k = new KeyboardEvent(KeyboardEvent.KEY_DOWN);
+        k.charCode = c.charCodeAt(0);
+        _on.dispatchEvent(k);
+
+        var kUp = new KeyboardEvent(KeyboardEvent.KEY_UP);
+        kUp.charCode = c.charCodeAt(0);
+        _on.dispatchEvent(kUp);
+    }
+
+}
 class Simulate {
+
+    static public function key(on) {
+        return new Key(on);
+    }
+
     static public function mouseMove(on, sx, sy) {
         var e = new MouseEvent(MouseEvent.MOUSE_MOVE);
         e.stageX = sx;
